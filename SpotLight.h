@@ -1,0 +1,32 @@
+#pragma once
+#include "PointLight.h"
+
+class SpotLight : public PointLight
+{
+public:
+    SpotLight();
+
+    SpotLight(GLfloat red, GLfloat green, GLfloat blue,
+        GLfloat aIntensity, GLfloat dIntensity,
+        GLfloat xPos, GLfloat yPos, GLfloat zPos,
+        GLfloat xDir, GLfloat yDir, GLfloat zDir,
+        GLfloat con, GLfloat lin, GLfloat exp,
+        GLfloat edg);
+
+    void UseLight(GLuint ambientIntensityLocation, GLuint ambientColourLocation,
+        GLuint diffuseIntensityLocation, GLuint positionLocation,
+        GLuint directionLocation, GLuint constantLocation,
+        GLuint linearLocation, GLuint exponentLocation,
+        GLuint edgeLocation);
+
+    void SetFlash(glm::vec3 pos, glm::vec3 dir);
+    void SetPos(glm::vec3 pos);
+    void Disable(); // Método para desactivar la luz
+    void Enable();  // Método para activar la luz
+    ~SpotLight();
+
+private:
+    glm::vec3 direction;
+    GLfloat edge, procEdge;
+    bool isActive; // Variable para controlar si la luz está activa
+};
